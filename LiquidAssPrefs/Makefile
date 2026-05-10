@@ -9,8 +9,8 @@ LiquidAssPrefs_FILES = $(PREF_LOCAL_FILES) $(PREF_SHARED_FILES) $(PREF_RUNTIME_F
 LiquidAssPrefs_FRAMEWORKS = UIKit MetalKit MetalPerformanceShaders
 LiquidAssPrefs_INSTALL_PATH = /Library/PreferenceBundles
 LiquidAssPrefs_CFLAGS = -fobjc-arc -I../Shared -I../Runtime
+LiquidAssPrefs_LDFLAGS = -Wl,-undefined,dynamic_lookup
 ifeq ($(findstring simulator,$(TARGET)),simulator)
-LiquidAssPrefs_LDFLAGS += -Wl,-undefined,dynamic_lookup
 else
 LiquidAssPrefs_PRIVATE_FRAMEWORKS = Preferences
 endif

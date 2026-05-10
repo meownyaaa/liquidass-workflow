@@ -873,7 +873,7 @@ BOOL LG_imageLooksBlack(UIImage *img) {
     if (!img) return YES;
     CGImageRef cg = img.CGImage;
     if (!cg) return YES;
-    static const size_t kSampleGrid = 5;
+    #define kSampleGrid 5
     unsigned char px[kSampleGrid * kSampleGrid * 4] = {0};
     CGContextRef ctx = CGBitmapContextCreate(px, kSampleGrid, kSampleGrid, 8, kSampleGrid * 4, LGSharedRGBColorSpace(),
         kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
@@ -890,6 +890,7 @@ BOOL LG_imageLooksBlack(UIImage *img) {
         if (brightestChannel > 1) return NO;
     }
     return YES;
+    #undef kSampleGrid
 }
 
 static BOOL LG_contextSnapshotLooksIncomplete(UIImage *img) {

@@ -500,8 +500,11 @@ static BOOL LGItemVisibleForCurrentPreferences(NSDictionary *item) {
     [button setImage:[UIImage systemImageNamed:@"chevron.up" withConfiguration:config] forState:UIControlStateNormal];
     button.tintColor = [UIColor labelColor];
     button.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     button.contentEdgeInsets = UIEdgeInsetsMake(0.0, 12.0, 0.0, 12.0);
     button.imageEdgeInsets = UIEdgeInsetsMake(0.0, 6.0, 0.0, -6.0);
+    #pragma clang diagnostic pop
     [button addTarget:self action:@selector(handleScrollTopPressed) forControlEvents:UIControlEventTouchUpInside];
     [blurView.contentView addSubview:button];
 
@@ -808,7 +811,10 @@ static BOOL LGItemVisibleForCurrentPreferences(NSDictionary *item) {
         button.backgroundColor = [_accentColor colorWithAlphaComponent:(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? 0.16 : 0.10)];
         button.layer.cornerRadius = 19.0;
         button.layer.cornerCurve = kCACornerCurveContinuous;
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         button.contentEdgeInsets = UIEdgeInsetsMake(0.0, 14.0, 0.0, 14.0);
+        #pragma clang diagnostic pop
         [button.heightAnchor constraintEqualToConstant:38.0].active = YES;
         [button addTarget:self action:@selector(handleJumpChipPressed:) forControlEvents:UIControlEventTouchUpInside];
         objc_setAssociatedObject(button, @selector(handleJumpChipPressed:), title, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -1117,7 +1123,11 @@ static BOOL LGItemVisibleForCurrentPreferences(NSDictionary *item) {
     menuButton.showsMenuAsPrimaryAction = YES;
     menuButton.tintColor = _accentColor;
     menuButton.titleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     menuButton.contentEdgeInsets = UIEdgeInsetsMake(4.0, 8.0, 4.0, 8.0);
+    menuButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, 6.0, 0.0, -6.0);
+    #pragma clang diagnostic pop
     menuButton.backgroundColor = UIColor.clearColor;
     menuButton.layer.cornerRadius = 0.0;
 
@@ -1139,7 +1149,6 @@ static BOOL LGItemVisibleForCurrentPreferences(NSDictionary *item) {
         [menuButton setTitle:selectedTitle forState:UIControlStateNormal];
         [menuButton setImage:[UIImage systemImageNamed:@"chevron.down"] forState:UIControlStateNormal];
         menuButton.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
-        menuButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, 6.0, 0.0, -6.0);
     }
 
     __weak typeof(self) weakSelf = self;
@@ -1273,7 +1282,10 @@ static BOOL LGItemVisibleForCurrentPreferences(NSDictionary *item) {
     button.translatesAutoresizingMaskIntoConstraints = NO;
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
     button.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     button.contentEdgeInsets = UIEdgeInsetsZero;
+    #pragma clang diagnostic pop
     NSString *actionName = item[@"action"];
     if (actionName.length) {
         SEL action = NSSelectorFromString(actionName);
