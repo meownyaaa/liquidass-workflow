@@ -246,7 +246,7 @@ NSArray<UIWindow *> *LGApplicationWindows(UIApplication *app) {
         return windows;
     }
 
-    NSArray<UIWindow *> *windows = app.windows;
+    NSArray<UIWindow *> *windows = LGApplicationWindows(app);
     return [windows isKindOfClass:[NSArray class]] ? windows : @[];
 }
 

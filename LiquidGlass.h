@@ -3,6 +3,8 @@
 #import <MetalKit/MetalKit.h>
 #import "Shared/LGSharedSupport.h"
 
+#define LG_EXPORT __attribute__((visibility("default")))
+
 typedef NS_ENUM(NSInteger, LGUpdateGroup) {
     // keeps each ticker from redrawing everything else
     LGUpdateGroupAll = 0,
@@ -68,5 +70,9 @@ void     LGInvalidateLockscreenSnapshotCache(void);
                                      actions:(void (^)(CGContextRef context))actions;
 - (void)updateOrigin;
 - (void)scheduleDraw;
+
+LG_EXPORT void LG_registerGlassView(UIView *view, LGUpdateGroup group);
+LG_EXPORT void LG_unregisterGlassView(UIView *view, LGUpdateGroup group);
+LG_EXPORT void LG_updateRegisteredGlassViews(LGUpdateGroup group);
 
 @end
