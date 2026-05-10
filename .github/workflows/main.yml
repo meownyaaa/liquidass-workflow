@@ -1,0 +1,30 @@
+name: Build Tweak
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Setup Theos
+        uses: Randomblock1/theos-action@v1
+        with:
+          theos-src: 'https://github.com/theos/theos'
+          theos-sdks: 'https://github.com/theos/sdks'
+
+      - name: Build package
+        run: |
+          export THEOS_PACKAGE_SCHEME=rootless
+          make package FINALPACKAGE=1 ADDITIONAL_CFLAGS="-Wno-error -Wno-deprecated-declarations"
+        
+      - name: Upload Package
+        uses: actions/upload-artifact@v7
+        with:
+          name: Liquid(Gl)Ass
+          path: packages/*.deb
